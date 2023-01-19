@@ -10,13 +10,15 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { InputElementsComponent } from './components/input-elements/input-elements.component';
+import { CodeEditorComponent } from './components/code-editor/code-editor.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    InputElementsComponent
+    InputElementsComponent,
+    CodeEditorComponent
   ],
   imports: [
     BrowserModule,
