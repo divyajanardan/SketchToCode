@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SketchTocodeService } from 'src/app/services/sketch-tocode.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { SketchTocodeService } from 'src/app/services/sketch-tocode.service';
 })
 export class ProjectCreationHomeComponent implements OnInit {
 
-  constructor(private projectService: SketchTocodeService) { }
+  constructor(private router: Router, private projectService: SketchTocodeService) { }
 
   isShowAngular = true; 
   isWebApi = true;
@@ -32,13 +33,14 @@ export class ProjectCreationHomeComponent implements OnInit {
 
   CreateProject(){
     let args;
-    if(this.createAngular){
+    if(this.createAngular && this.angularProjName != ""){
       args = { 'projectName': this.angularProjName, 'projectType': '2' };
       this.projectService.createProject(args);
     }
-    if(this.createWebApi){
+    if(this.createWebApi && this.apiProjName != ""){
       args = { 'projectName': this.apiProjName, 'projectType': '1' };
       this.projectService.createProject(args);
-    }    
-  }
+    }   
+    this.router.navigate(['/editor']);
+  } 
 }

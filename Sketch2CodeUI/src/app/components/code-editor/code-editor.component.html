@@ -1,18 +1,19 @@
 <div>
     <!-- <form> -->
+<!-- 
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>your Project name</mat-label>
+            <input matInput [(ngModel)]="projectName">
+        </mat-form-field>
+    </div> -->
 
-        <div>
-            <mat-form-field appearance="fill">
-                <mat-label>your Project name</mat-label>
-                <input matInput [(ngModel)]="projectName">
-            </mat-form-field>
-        </div>
-        
-        <div>
-            <h1>Editor</h1>
+    <div>
+        <h1>Editor</h1>
+        <div class="editor-style">
+            <app-input-elements class="P-l-2"></app-input-elements>
             <div>
-                <editor apiKey="no-api-key" id="editorId3" [(ngModel)]="htmlString"
-                 [init]="{
+                <editor apiKey="no-api-key" id="editorId3" [(ngModel)]="htmlString" [init]="{
              base_url: '/tinymce',
              suffix: '.min',
              height:500,
@@ -20,13 +21,15 @@
              statusbar: false,
              menubar: false,             
              toolbar:false}" initialValue="" [inline]="false" plugins="lists code" tagName="div">
-            </editor>
+                </editor>
             </div>
         </div>
 
-        <div>
-            <button class="button-style" mat-stroked-button color="primary" (click)="onSavePrject()">Save Project</button>
-        </div>
+    </div>
+
+    <div>
+        <button class="button-style" mat-stroked-button color="primary" (click)="onSavePrject()">Save Project</button>
+    </div>
     <!-- </form> -->
 
-</div>  
+</div>
