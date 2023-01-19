@@ -1,14 +1,14 @@
 <div class="flex-properties">
     <h2>Controls</h2>
-    <mat-form-field appearance="outline" draggable="true">
+    <mat-form-field appearance="outline" draggable="true" ondragstart="drag($element)">
         <mat-label>Input</mat-label>
         <input matInput placeholder="Placeholder">
       </mat-form-field>
 
-      <mat-form-field appearance="outline" draggable="true">
+      <mat-form-field appearance="outline" draggable="true" ondragstart="drag($element)">
         <mat-label>Textarea</mat-label>
         <textarea matInput></textarea>
       </mat-form-field>
 
-      <button mat-raised-button draggable="true">Button</button>
+      <button mat-raised-button draggable="true"  ondragstart="drag($element)" >Button</button>
 </div>

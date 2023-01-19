@@ -13,6 +13,7 @@ import { CodeEditorComponent } from './components/code-editor/code-editor.compon
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 
 
 @NgModule({
@@ -32,9 +33,12 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     MatButtonModule,
     BrowserAnimationsModule,
     DragDropModule,
-    MatInputModule
+    MatInputModule,
+    EditorModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
