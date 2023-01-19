@@ -13,4 +13,16 @@
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[SketchToCodeService_ASPNETCORE_ENVIRONMENT]" />
     </EnvironmentOverrides>
   </ServiceManifestImport>
+  <Principals>
+    <Users>
+      <User Name="LocalAdmin" AccountType="NetworkService">
+        <MemberOf>
+          <SystemGroup Name="Administrators" />
+        </MemberOf>
+      </User>
+    </Users>
+  </Principals>
+  <Policies>
+    <DefaultRunAsPolicy UserRef="LocalAdmin" />
+  </Policies>
 </ApplicationManifest>

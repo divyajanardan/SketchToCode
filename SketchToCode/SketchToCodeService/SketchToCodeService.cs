@@ -39,10 +39,10 @@ namespace SketchToCodeService
                         var builder = WebApplication.CreateBuilder();
                         builder.Services.AddCors(options =>
                         {
-                            options.AddPolicy("MyAllowedOrigins",
+                            options.AddPolicy("AllowOrigin",
                             policy =>
                             {
-                                policy.WithOrigins("http://TRVL1Z0J7D3.finastra.global:8569") // note the port is included 
+                                policy.AllowAnyOrigin()
                                     .AllowAnyHeader()
                                     .AllowAnyMethod();
                             }); 
@@ -70,7 +70,7 @@ namespace SketchToCodeService
                             app.UseSwagger();
                             app.UseSwaggerUI();
                         }
-                        
+                        app.UseCors("AllowOrigin");
                         app.UseAuthorization();
                         
                         app.MapControllers();
