@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CodeProvidersService {
-  projName:any
+  projName:any;
+  apiProjName:any;
   constructor() { }
 
   

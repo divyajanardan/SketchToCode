@@ -1,49 +1,68 @@
 
 <div>
     <div class="tab-items">
-        <div>Create Angular Components</div>
-        <div><button mat-button color="primary" (click)="ShowApiController()">Create API Controllers</button></div>
-        <div [hidden]="isShowWebApiController">
-            <label>Project  Name: </label><input [(ngModel)]="apiProjName" name="apiProjName">
-            <label>Enter controller name: </label> <input [(ngModel)]="controllerName" name="controllerName">
-            <button mat-button color="primary" (click)="CreateApiController()">Create</button>
+        <div><button mat-button color="primary" (click)="ShowAngularComponent()">Create Angular Components</button>
         </div>
-        <div>Create API Model Class</div>
+        <div><button mat-button color="primary" (click)="ShowApiController()">Create API Controllers</button></div>        
+        <!-- <div><button mat-button color="primary" (click)="ShowApiModel()">Create API Model Class</button></div> -->
+        <!-- <div><button mat-button color="primary" (click)="DownloadProject()">Download Project</button> </div> -->
     </div>
-</div>
-<div>
-    <!-- <form> -->
-<!-- 
-    -->
-    <h1>Project Name: <strong>{{codeProvidersService.projName}}</strong></h1>
+
     <div>
-        <mat-form-field appearance="fill">
-            <mat-label>Your component name</mat-label>
-            <input matInput [(ngModel)]="componentName">
-        </mat-form-field>
-    </div>
-    <div>
-        <h1>Editor</h1>
-        <div class="editor-style">
-            <app-input-elements class="P-l-2"></app-input-elements>
+        <div [hidden]="isShowAngularComponent">
             <div>
-                <editor apiKey="no-api-key" id="editorId3" [(ngModel)]="htmlString" [init]="{
-             base_url: '/tinymce',
-             suffix: '.min',
-             height:500,
-             width:900,
-             statusbar: false,
-             menubar: false,             
-             toolbar:false}" initialValue="" [inline]="false" plugins="lists code" tagName="div">
-                </editor>
+
+                <h1>Project Name: <strong>{{codeProvidersService.projName}}</strong></h1>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Your component name</mat-label>
+                        <input matInput [(ngModel)]="componentName">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <h1>Editor</h1>
+                    <div class="editor-style">
+                        <app-input-elements class="P-l-2"></app-input-elements>
+                        <div>
+                            <editor apiKey="no-api-key" id="editorId3" [(ngModel)]="htmlString" [init]="{
+                         base_url: '/tinymce',
+                         suffix: '.min',
+                         height:500,
+                         width:900,
+                         statusbar: false,
+                         menubar: false,             
+                         toolbar:false}" initialValue="" [inline]="false" plugins="lists code" tagName="div">
+                            </editor>
+                        </div>
+                    </div>
+            
+                </div>
+            
+                <div>
+                    <button class="button-style" mat-stroked-button color="primary" (click)="onSavePrject()">Save</button>
+                </div>
+                <!-- </form> -->
+            
             </div>
         </div>
-
+        <div [hidden]="isShowWebApiController">
+            <div class="div-items">
+            <div><label>Project  Name: </label><input [(ngModel)]="apiProjName" name="apiProjName">
+            <br><br>
+            <label>Enter controller name: </label> <input [(ngModel)]="controllerName" name="controllerName">
+            <br><br>            
+            <button class="button-style" mat-stroked-button mat-button color="primary" (click)="CreateApiController()">Save</button>
+        </div>
+        </div>
+        <div [hidden]="isShowApiModel">
+            <div class="div-items">
+            <label>Project  Name: </label><input [(ngModel)]="apiProjModelName" name="apiProjModelName">
+            <br>
+            <br>
+            <label>Enter model class name: </label> <input [(ngModel)]="modelName" name="modelName">
+            <br><br>
+            <button mat-button class="button-style" mat-stroked-button color="primary" (click)="CreateModelClass()">Save</button>
+        </div>
+        </div>
     </div>
-
-    <div>
-        <button class="button-style" mat-stroked-button color="primary" (click)="onSavePrject()">Save Project</button>
-    </div>
-    <!-- </form> -->
-
 </div>

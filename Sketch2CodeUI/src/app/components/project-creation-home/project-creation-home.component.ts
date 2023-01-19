@@ -42,7 +42,9 @@ export class ProjectCreationHomeComponent implements OnInit {
     if (this.createWebApi && this.apiProjName != "") {
       args = { 'projectName': this.apiProjName, 'projectType': '1' };
       this.projectService.createProject(args);
+      this.codeProvidersService.apiProjName = this.apiProjName;
     }
+    window.alert("Project saved");
     this.router.navigate(['/editor']);
   }
 }

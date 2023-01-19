@@ -77,11 +77,11 @@ export class SketchTocodeService {
     const httpOptions = {
       method: 'GET',
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type':  'application/zip',
         'Access-Control-Allow-Origin': '*'
       })
     };
-    const url = `$this.baseUri + '/api/project/downloadproject/${projectname}`;
+    const url = this.baseUri + `/api/project/downloadproject?projectName=${projectname}`;
     return this.http.get(url, httpOptions).toPromise().then(res => {
       console.log(res);
     });
