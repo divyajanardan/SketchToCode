@@ -7,15 +7,17 @@ import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { InputElementsComponent } from './components/input-elements/input-elements.component';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { SideMenuComponent } from './components/side-menu/side-menu.component';
 import { ProjectCreationHomeComponent } from './components/project-creation-home/project-creation-home.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule} from '@angular/forms'; 
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -38,11 +40,14 @@ import { HttpClientModule } from '@angular/common/http';
     MatButtonModule,
     BrowserAnimationsModule,
     DragDropModule,
-    MatCheckboxModule,
+    MatInputModule,
+    EditorModule,
     FormsModule,
+    ReactiveFormsModule
+    MatCheckboxModule,    
     HttpClientModule
   ],
-  providers: [],
+  providers: [ { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

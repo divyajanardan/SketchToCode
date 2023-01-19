@@ -1,30 +1,14 @@
 <div class="flex-properties">
-    <mat-form-field >
-        <mat-label>Leave a comment</mat-label>
-        <textarea matInput placeholder="Text area"></textarea>
-    </mat-form-field>
-    <mat-form-field class="p-t-2">
-        <mat-label>Field Name</mat-label>
-        <input matInput placeholder="Input field" value="Sushi">
-    </mat-form-field>
-<div  class="p-t-2">    <button mat-button color="primary">Primary</button> </div>
-<div>
-    <div class="container">
-        <h2>Controls</h2>
-        <div cdkDropList #moviesList="cdkDropList" [cdkDropListData]="MoviesList" [cdkDropListConnectedTo]="[doneMovieList]"
-          class="movie-list" (cdkDropListDropped)="onDrop($event)">
-          <div class="movie-block" *ngFor="let moviesList of MoviesList" cdkDrag>{{moviesList}}</div>
-        </div>
-      </div>
-      <div class="container">
-        <h2>Editor</h2>
-        <div cdkDropList #doneMovieList="cdkDropList" [cdkDropListData]="MoviesWatched"
-          [cdkDropListConnectedTo]="[moviesList]" class="movie-list" (cdkDropListDropped)="onDrop($event)">
-          <div class="movie-block" *ngFor="let moviesWatched of MoviesWatched" cdkDrag>{{moviesWatched}}</div>
-        </div>
-      </div>
-    
-      <div class="html-container" *ngIf="showControl" [innerHtml]="htmlString">
-      </div>
-      </div>
+    <h2>Controls</h2>
+    <mat-form-field appearance="outline" draggable="true" (dragstart)="dragText($event)">
+        <mat-label>Input</mat-label>
+        <input matInput placeholder="Placeholder">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" draggable="true" (dragstart)="dragTextA($event)">
+        <mat-label>Textarea</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+
+      <button mat-raised-button draggable="true"  (dragstart)="dragButton($event)" >Button</button>
 </div>
