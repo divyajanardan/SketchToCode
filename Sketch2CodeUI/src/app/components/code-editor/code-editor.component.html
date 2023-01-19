@@ -4,7 +4,7 @@
         <div>
             <mat-form-field appearance="fill">
                 <mat-label>your Project name</mat-label>
-                <input matInput>
+                <input matInput [(ngModel)]="projectName">
             </mat-form-field>
         </div>
         
@@ -25,7 +25,7 @@
         </div>
 
         <div>
-            <button mat-stroked-button color="primary">Save Project</button>
+            <button class="button-style" mat-stroked-button color="primary" (click)="onSavePrject()">Save Project</button>
         </div>
     <!-- </form> -->
 

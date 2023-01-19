@@ -10,7 +10,8 @@ import { CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-d
 })
 
 export class CodeEditorComponent implements OnInit {
-  htmlString:string= 'drag here'
+  htmlString:string= '';
+  projectName: string='';
 
 
   constructor(private sanitized: DomSanitizer) {
@@ -18,10 +19,7 @@ export class CodeEditorComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  onDragStart(test: any) {    
-    test.dataTransfer.setData('text/html', '<textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Textarea"></textarea>>');    
+  onSavePrject(){
+    console.log(this.htmlString);
   }
-  
-
 }
