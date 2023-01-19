@@ -6,7 +6,5 @@ namespace SketchToCodeService.Models
     {
         public string ProjectName { get; set; }
         public string ProjectType { get; set; }
-        public ApiProject ApiProject { get; set; }
-
     }
 }

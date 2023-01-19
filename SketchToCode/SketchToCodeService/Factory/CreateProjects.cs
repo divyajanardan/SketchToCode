@@ -1,6 +1,9 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Primitives;
 using SketchToCodeService.Helper;
 using SketchToCodeService.Models;
+using System.Text;
 
 namespace SketchToCodeService.Factory
 {
@@ -23,6 +26,80 @@ namespace SketchToCodeService.Factory
                 AngularProjectTemplate angProj = new AngularProjectTemplate();
                 angProj.CreateAngularProject(projectDetails);
             }
+        }
+
+        public void CreateAngularComponent(AngularComponent angularComponent)
+        {
+            AngularProjectTemplate angProj = new AngularProjectTemplate();
+            angProj.CreateAngularComponent(angularComponent);
+        }
+        public void CreateWebApiController(ApiController apiController)
+        {
+            if (apiController.ControllerName != null)
+            {                
+                string controllerFile = $"C:/HackthonProjects/{apiController.ProjectName}/Controllers/{apiController.ControllerName}.cs";
+                System.IO.FileInfo file = new System.IO.FileInfo(controllerFile);
+                file.Directory.Create(); // If the directory already exists, this method does nothing.                    
+                string controllerFileContent = $@"using Microsoft.AspNetCore.Mvc;
+                    namespace {apiController.ProjectName}.Controllers
+                    {{
+                        [Route(""api/{apiController.ControllerName.ToLower()}"")]
+                        [ApiController]
+                        public class {apiController.ControllerName}Controller : ControllerBase
+                        {{
+                            [HttpGet]
+                            public IEnumerable<string> Get()
+                            {{
+                                return new string[] {{ ""value1"", ""value2"" }};
+                            }}
+
+                            [HttpGet(""{{id}}"")]
+                            public string Get(int id)
+                            {{
+                                return ""value"";
+                            }}
+
+                            [HttpPost]
+                            public void Post([FromBody] string value)
+                            {{
+                            }}
+
+                            [HttpPut(""{{id}}"")]
+                            public void Put(int id, [FromBody] string value)
+                            {{
+                            }}
+
+                            [HttpDelete(""{{id}}"")]
+                            public void Delete(int id)
+                            {{
+                            }}
+                        }}
+                    }}
+                    ";
+                System.IO.File.WriteAllText(file.FullName, controllerFileContent);
+                
+            }
+        }
+
+        public void CreateWebApiModelClass(ApiModelClass modelClass)
+        {
+            if(modelClass.ClassProperty != null && modelClass.ClassProperty.Count > 0)
+            {
+                string classFile = $"C:/HackthonProjects/{modelClass.ProjectName}/Models/{modelClass.ClassName}.cs";
+                System.IO.FileInfo file = new System.IO.FileInfo(classFile);
+                file.Directory.Create(); // If the directory already exists, this method does nothing.
+                
+                StringBuilder propertyString = new StringBuilder();
+                propertyString.Append("namespace " + modelClass.ProjectName + ".Models\r\n{\r\n    public class " + modelClass.ClassName + "\r\n    {\r\n ");
+                 
+                foreach (var property in modelClass.ClassProperty)
+                {
+                    propertyString.Append("\r\n        public " + property.Key + " " + property.Value + " { get; set; }");                        
+                }
+                propertyString.Append("\r\n\r\n    }\r\n}");
+                System.IO.File.WriteAllText(file.FullName, propertyString.ToString());
+            }
+           
         }
 
         private void CreateWebAPI(ProjectDetails projectDetails)
@@ -63,53 +140,7 @@ namespace SketchToCodeService.Factory
                 app.MapControllers();
                 app.Run();";
             
-            System.IO.File.WriteAllText(programFile, programFileContent);
-            if (projectDetails.ApiProject.Controllers != null)
-            {
-                foreach(var controller in projectDetails.ApiProject.Controllers)
-                {
-                    string controllerFile = $"{projectDirectory}/Controllers/{controller.ControllerName}.cs";
-                    System.IO.FileInfo file = new System.IO.FileInfo(controllerFile);
-                    file.Directory.Create(); // If the directory already exists, this method does nothing.                    
-                    string controllerFileContent = $@"using Microsoft.AspNetCore.Mvc;
-                        namespace {projectDetails.ProjectName}.Controllers
-                        {{
-                            [Route(""api/{controller.ControllerName}"")]
-                            [ApiController]
-                            public class {controller.ControllerName}Controller : ControllerBase
-                            {{
-                                [HttpGet]
-                                public IEnumerable<string> Get()
-                                {{
-                                    return new string[] {{ ""value1"", ""value2"" }};
-                                }}
-
-                                [HttpGet(""{{id}}"")]
-                                public string Get(int id)
-                                {{
-                                    return ""value"";
-                                }}
-
-                                [HttpPost]
-                                public void Post([FromBody] string value)
-                                {{
-                                }}
-
-                                [HttpPut(""{{id}}"")]
-                                public void Put(int id, [FromBody] string value)
-                                {{
-                                }}
-
-                                [HttpDelete(""{{id}}"")]
-                                public void Delete(int id)
-                                {{
-                                }}
-                            }}
-                        }}
-                        ";
-                    System.IO.File.WriteAllText(file.FullName, controllerFileContent);
-                }               
-            }
+            System.IO.File.WriteAllText(programFile, programFileContent);            
         }
 
         private void CreateClassLibraryProject()

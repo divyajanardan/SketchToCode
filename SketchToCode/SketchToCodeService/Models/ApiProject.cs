@@ -1,18 +1,15 @@
 ﻿namespace SketchToCodeService.Models
 {
-    public class ApiProject
+    public class ApiController
     {
-        public List<Controllers> Controllers { get; set; }
-        //public List<ModelClass> ClassProperties { get; set; }
-    }
-
-    public class ModelClass
-    {
-        public IDictionary<object, object> MyProperty { get; set; }
-    }
-
-    public class Controllers
-    {
+        public string ProjectName { get; set; }
         public string ControllerName { get; set; }
+    }
+
+    public class ApiModelClass
+    {
+        public string ProjectName { get; set; }
+        public string ClassName { get; set; }
+        public IDictionary<string, string> ClassProperty { get; set; }
     }
 }

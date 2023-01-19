@@ -5,6 +5,10 @@ namespace SketchToCodeService.Factory
 {
     public class AngularProjectTemplate
     {
+        private const string appModFirstSection = "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\n\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatSidenavModule } from '@angular/material/sidenav';";
+        private const string ngModuleDeclarations = "AppComponent";
+        private const string ngModuleImports = "BrowserModule,\r\n    AppRoutingModule,\r\n    MatToolbarModule,\r\n    MatIconModule,\r\n    MatSidenavModule,\r\n    BrowserAnimationsModule";
+
         public void CreateAngularProject(ProjectDetails projectDetails)
         {
             string projectName = projectDetails.ProjectName;
@@ -135,13 +139,16 @@ namespace SketchToCodeService.Factory
   ""private"": true,
   ""dependencies"": {{
     ""@angular/animations"": ""^14.0.0"",
+    ""@angular/cdk"": ""^13.0.0"",
     ""@angular/common"": ""^14.0.0"",
     ""@angular/compiler"": ""^14.0.0"",
     ""@angular/core"": ""^14.0.0"",
     ""@angular/forms"": ""^14.0.0"",
+    ""@angular/material"": ""^13.0.0"",
     ""@angular/platform-browser"": ""^14.0.0"",
     ""@angular/platform-browser-dynamic"": ""^14.0.0"",
     ""@angular/router"": ""^14.0.0"",
+    ""@tinymce/tinymce-angular"": ""^7.0.0"",
     ""rxjs"": ""~7.5.0"",
     ""tslib"": ""^2.3.0"",
     ""zone.js"": ""~0.11.4""
@@ -409,24 +416,8 @@ describe('AppComponent', () => {{
             #region app.module.ts
 
             string appModuleTs = $"{projectDirectory}/src/app/app.module.ts";
-            string appModuleTsContent = $@"import {{ NgModule }} from '@angular/core';
-import {{ BrowserModule }} from '@angular/platform-browser';
-
-import {{ AppRoutingModule }} from './app-routing.module';
-import {{ AppComponent }} from './app.component';
-
-@NgModule({{
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-}})
-export class AppModule {{ }}";
+            string appModContent = appModFirstSection + "\r\n @NgModule({\r\n  declarations: [" + ngModuleDeclarations + "  ],\r\n  imports: [" + ngModuleImports + "],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }";
+            string appModuleTsContent = appModContent;
             System.IO.File.WriteAllText(appModuleTs, appModuleTsContent);
             #endregion
 
@@ -493,6 +484,36 @@ platformBrowserDynamic().bootstrapModule(AppModule)
             System.IO.File.WriteAllText(styles, stylesContent);
             #endregion
 
+        }
+
+        public void CreateAngularComponent(AngularComponent angularComponent)
+        {
+            string projectName = angularComponent.ProjectName;
+            string componentName = angularComponent.ComponentName;
+            string componentHtml = $"C:/HackthonProjects/{projectName}/src/app/components/{componentName}/{componentName}.component.html";
+
+            System.IO.FileInfo componentFolder = new System.IO.FileInfo(componentHtml);
+            componentFolder.Directory.Create();
+            string componentContent = angularComponent.ComponentHtml;
+            System.IO.File.WriteAllText(componentFolder.FullName, componentContent);
+
+            string componentTs = $"C:/HackthonProjects/{projectName}/src/app/components/{componentName}/{componentName}.component.ts";
+            string componentTsString = "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-test',\r\n  templateUrl: './" + componentName + ".component.html',\r\n  styleUrls: ['./" + componentName + ".component.css']\r\n})\r\nexport class " + componentName + "Component implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}";
+            string componentTsContent = componentTsString;
+            System.IO.File.WriteAllText(componentTs, componentTsContent);
+
+            string componentCss = $"C:/HackthonProjects/{projectName}/src/app/components/{componentName}/{componentName}.component.css";
+            string componentCssContent = "";
+            System.IO.File.WriteAllText(componentCss, componentCssContent);
+
+            //Update appModule.ts
+            string appModFirstSec = appModFirstSection + $@"import {componentName} from '../app/components/{componentName}/{componentName}.component';";
+            string ngModDec = ngModuleDeclarations + $@",\r\n {componentName}Component";
+
+            string appModuleTs = $"C:/HackthonProjects/{projectName}/src/app/app.module.ts";
+            string appModContent = appModFirstSec + "\r\n @NgModule({\r\n  declarations: [" + ngModDec + "  ],\r\n  imports: [" + ngModuleImports + "],\r\n  providers: [],\r\n  bootstrap: [AppComponent]\r\n})\r\nexport class AppModule { }";
+            string appModuleTsContent = appModContent;
+            System.IO.File.WriteAllText(appModuleTs, appModuleTsContent);
         }
     }
 }
