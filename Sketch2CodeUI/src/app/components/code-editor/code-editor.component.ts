@@ -3,6 +3,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 
 import { CdkDragDrop, moveItemInArray, copyArrayItem } from '@angular/cdk/drag-drop';
 import { SketchTocodeService } from 'src/app/services/sketch-tocode.service';
+import { CodeProvidersService } from '../code-providers.service';
 
 @Component({
   selector: 'app-code-editor',
@@ -12,10 +13,10 @@ import { SketchTocodeService } from 'src/app/services/sketch-tocode.service';
 
 export class CodeEditorComponent implements OnInit {
   htmlString:string= '';
-  projectName: string='';
+  componentName: string='';
 
 
-  constructor(private sanitized: DomSanitizer, private projectService: SketchTocodeService) {
+  constructor(private sanitized: DomSanitizer, private projectService: SketchTocodeService, public codeProvidersService: CodeProvidersService) {
   }
 
   ngOnInit(): void {
