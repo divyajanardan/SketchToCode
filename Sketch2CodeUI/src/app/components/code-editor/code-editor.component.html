@@ -1,1 +1,30 @@
 <p>code-editor works!</p>
+<div class="sample">
+  <div class="container">
+      <h2>Controls</h2>
+      <div  cdkDropList #moviesList="cdkDropList" [cdkDropListData]="MoviesList" [cdkDropListConnectedTo]="[doneMovieList]"
+        class="movie-list" (cdkDropListDropped)="onDrop($event)" class="movie-list">
+        <div class="movie-block" *ngFor="let moviesList of MoviesList" cdkDrag>{{moviesList}}</div>
+      </div>
+    
+    </div>
+      <div class="container">
+      <div class="s1"> <h2>Editor</h2></div>
+      <div cdkDropList #doneMovieList="cdkDropList" [cdkDropListData]="MoviesWatched"
+        [cdkDropListConnectedTo]="[moviesList]" class="movie-list1" (cdkDropListDropped)="onDrop($event)">
+        <div class="movie-block" *ngFor="let moviesWatched of MoviesWatched" cdkDrag>{{moviesWatched}}</div>
+      </div>
+    </div>
+   
+  
+    <div class="html-container" *ngIf="showControl" [innerHtml]="htmlString">
+      </div>
+
+      
+</div>
+      <div>
+        <button onclick="CreateProject()">Create Project</button>
+      </div>
+   
+    
+
