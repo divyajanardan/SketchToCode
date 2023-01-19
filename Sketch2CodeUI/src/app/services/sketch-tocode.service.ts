@@ -36,6 +36,7 @@ export class SketchTocodeService {
     //   headers:new HttpHeaders(header)
     // };
     const httpOptions = {
+      method: 'POST',
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         'Access-Control-Allow-Origin': '*'
