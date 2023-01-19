@@ -14,7 +14,15 @@ export class InputElementsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  drag(){
-    
+  dragTextA(test: any){    
+    test.dataTransfer.setData('text/html', '<textarea id="w3review" name="w3review" rows="4" cols="50" placeholder="Textarea"></textarea>');    
   }
+  dragText(test:any){
+    test.dataTransfer.setData('text/html', '<input type="text" id="lname" name="lname">')
+  }
+  dragButton(test:any){
+    test.dataTransfer.setData('text/html', '<input type="submit" value="Submit">')
+  }
+
+  
 }
