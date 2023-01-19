@@ -29,7 +29,6 @@ namespace SketchToCodeService.Controllers
 
         // POST api/<ProjectController>
         [HttpPost]
-        //public void Post([FromBody] ProjectDetails projectDetails)
         public void Post([FromBody] ProjectDetails projectDetails)
         {
             CreateProjects createProjects = new CreateProjects();
@@ -48,6 +47,27 @@ namespace SketchToCodeService.Controllers
         {
         }
 
+        [HttpPost("createangularcomponent")]
+        public void CreateAngularComponent([FromBody] AngularComponent angularComponent)
+        {
+            CreateProjects createProjects = new CreateProjects();
+            createProjects.CreateAngularComponent(angularComponent);
+        }
+
+        [HttpPost("createwebapicontrollers")]
+        public void CreateWebApiControllers([FromBody] ApiController apiController)
+        {
+            CreateProjects createProjects = new CreateProjects();
+            createProjects.CreateWebApiController(apiController);
+        }
+
+        [HttpPost("createwebapimodelclass")]
+        public void CreateWebApiModelClass([FromBody] ApiModelClass modelClass)
+        {
+            CreateProjects createProjects = new CreateProjects();
+            createProjects.CreateWebApiModelClass(modelClass);
+        }
+
         [HttpGet("downloadproject")]        
         public dynamic DownloadProject(string projectName)
         {
@@ -55,7 +75,7 @@ namespace SketchToCodeService.Controllers
             if (!System.IO.Directory.Exists(projectDirectory))
                 return this.NotFound();
 
-            var tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString()); // might want to clean this up if there are a lot of downloads
+            var tempFile = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Guid.NewGuid().ToString()); 
             ZipFile.CreateFromDirectory(projectDirectory, tempFile);
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
             response.Content = new StreamContent(new FileStream(tempFile, FileMode.Open, FileAccess.Read));
