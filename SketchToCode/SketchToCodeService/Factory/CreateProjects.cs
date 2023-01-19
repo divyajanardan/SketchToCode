@@ -18,7 +18,11 @@ namespace SketchToCodeService.Factory
             {
                 CreateWebAPI(projectDetails);
             }
-          
+            else if (projectDetails.ProjectType == "2")
+            {
+                AngularProjectTemplate angProj = new AngularProjectTemplate();
+                angProj.CreateAngularProject(projectDetails);
+            }
         }
 
         private void CreateWebAPI(ProjectDetails projectDetails)
