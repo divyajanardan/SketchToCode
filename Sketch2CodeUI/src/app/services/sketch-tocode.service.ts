@@ -71,4 +71,19 @@ export class SketchTocodeService {
       console.log(res);
     });
   }
+
+  downloadProject(projectname: any){
+    const body=JSON.stringify(projectname);    
+    const httpOptions = {
+      method: 'GET',
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    const url = `$this.baseUri + '/api/project/downloadproject/${projectname}`;
+    return this.http.get(url, httpOptions).toPromise().then(res => {
+      console.log(res);
+    });
+  }
 }
