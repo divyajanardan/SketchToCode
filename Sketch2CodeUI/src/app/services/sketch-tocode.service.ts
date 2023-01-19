@@ -12,29 +12,8 @@ export class SketchTocodeService {
     this.baseUri = environment.apiEndPoint;
   }
 
-
-  // createProject(args: any): Observable<any>{
-  //   const body=JSON.stringify(args);
-  //   const header = {
-  //     'Content-Type': 'application-json'
-  //   };
-  //   const options={
-  //     method: 'POST',
-  //     headers:new HttpHeaders(header)
-  //   };
-  //   const url = this.baseUri + '/api/project';
-  //   return this.http.post(url, body, options);
-  // }
-
   createProject(args: any){
-    const body=JSON.stringify(args);
-    // const header = {
-    //   'Content-Type': 'application-json'
-    // };
-    // const options={
-    //   method: 'POST',
-    //   headers:new HttpHeaders(header)
-    // };
+    const body=JSON.stringify(args);    
     const httpOptions = {
       method: 'POST',
       headers: new HttpHeaders({
@@ -46,6 +25,50 @@ export class SketchTocodeService {
     return this.http.post(url, body, httpOptions).toPromise().then(res => {
       console.log(res);
     });
+  }
 
+  createAngularComponent(args: any){
+    const body=JSON.stringify(args);    
+    const httpOptions = {
+      method: 'POST',
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    const url = this.baseUri + '/api/project/createangularcomponent';
+    return this.http.post(url, body, httpOptions).toPromise().then(res => {
+      console.log(res);
+    });
+  }
+
+  createApiController(args: any){
+    const body=JSON.stringify(args);    
+    const httpOptions = {
+      method: 'POST',
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    const url = this.baseUri + '/api/project/createwebapicontrollers';
+    return this.http.post(url, body, httpOptions).toPromise().then(res => {
+      console.log(res);
+    });
+  }
+
+  createApiModelClass(args: any){
+    const body=JSON.stringify(args);    
+    const httpOptions = {
+      method: 'POST',
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*'
+      })
+    };
+    const url = this.baseUri + '/api/project/createwebapimodelclass';
+    return this.http.post(url, body, httpOptions).toPromise().then(res => {
+      console.log(res);
+    });
   }
 }
