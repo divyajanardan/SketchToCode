@@ -13,7 +13,9 @@ import { SketchTocodeService } from 'src/app/services/sketch-tocode.service';
 export class CodeEditorComponent implements OnInit {
   htmlString:string= '';
   projectName: string='';
-
+  isShowWebApiController = true;
+  apiProjName: string ="";
+  controllerName: string ="";
 
   constructor(private sanitized: DomSanitizer, private projectService: SketchTocodeService) {
   }
@@ -27,5 +29,12 @@ export class CodeEditorComponent implements OnInit {
       args = { 'projectName': '', 'componentName': '', 'componentHtml': this.htmlString };
       this.projectService.createAngularComponent(args);
     }
+  }
+
+  ShowApiController(){
+    this.isShowWebApiController = !this.isShowWebApiController;
+  }
+  CreateApiController(){
+    
   }
 }

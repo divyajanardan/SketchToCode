@@ -1,3 +1,16 @@
+
+<div>
+    <div class="tab-items">
+        <div>Create Angular Components</div>
+        <div><button mat-button color="primary" (click)="ShowApiController()">Create API Controllers</button></div>
+        <div [hidden]="isShowWebApiController">
+            <label>Project  Name: </label><input [(ngModel)]="apiProjName" name="apiProjName">
+            <label>Enter controller name: </label> <input [(ngModel)]="controllerName" name="controllerName">
+            <button mat-button color="primary" (click)="CreateApiController()">Create</button>
+        </div>
+        <div>Create API Model Class</div>
+    </div>
+</div>
 <div>
     <!-- <form> -->
 <!-- 
