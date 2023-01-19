@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { InputElementsComponent } from './components/input-elements/input-elements.component';
 import { CodeEditorComponent } from './components/code-editor/code-editor.component';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 
 @NgModule({
@@ -30,8 +31,8 @@ import { CodeEditorComponent } from './components/code-editor/code-editor.compon
     MatFormFieldModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    DragDropModule
-    
+    DragDropModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
