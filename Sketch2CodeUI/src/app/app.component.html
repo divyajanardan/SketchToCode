@@ -7,8 +7,10 @@
     <span class="title-properties">sketchToCode</span>
   </mat-toolbar>
 
-  <mat-drawer-container>
-    <mat-drawer #drawer mode="side">I'm a drawer</mat-drawer>
+  <mat-drawer-container class="sidenav-properties">
+    <mat-drawer #drawer mode="side">
+      <app-input-elements></app-input-elements>
+    </mat-drawer>
     <mat-drawer-content>
       <router-outlet></router-outlet>
     </mat-drawer-content>
