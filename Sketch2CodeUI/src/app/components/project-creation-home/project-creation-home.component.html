@@ -1,0 +1,20 @@
+<div>
+<div>Please select the project type to create.</div>
+<div class="checkbox-items">
+<div><mat-checkbox class="checkbox" (change)="OpenAngularSection()">Angular</mat-checkbox></div>
+<div><mat-checkbox class="checkbox" (change)="OpenWebApiSection()">Web API</mat-checkbox></div>
+</div>
+</div>
+<form name="myForm">
+<div class="div-items">
+  <div [hidden]="isShowAngular">
+    <label>Angular project Name: </label>
+    <input [(ngModel)]="angularProjName" name="angProjName">
+  </div>
+  <div [hidden]="isWebApi">
+    <label>Web Api project Name: </label>    
+    <input [(ngModel)]="apiProjName" name = "apiProjName">
+  </div>
+</div>
+</form>
+<div><button mat-button color="primary" (click)="CreateProject()">Create Project</button></div>

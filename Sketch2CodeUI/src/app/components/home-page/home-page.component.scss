@@ -1,0 +1,45 @@
+.sketch-to-code {
+    height: 100%;
+    width: 100%;
+}
+
+.toolbar-properties {
+    height: 56px;
+    width: 100%;
+    background-color: #ba4fe8;
+    color: black
+}
+
+.title-properties {
+    font-size: large;
+    font-weight: 800;
+    padding-left: 16px;
+}
+
+mat-drawer-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.container-properties{
+    height: 94vh;
+    width: 50%;
+
+    mat-drawer{
+        border: 1px solid #a55baa;
+        padding: 16px;
+    }
+
+.content{
+    padding-top: 10px;
+    display: flex;
+    height: 300px;
+    width: 50%;
+    background-color: #d9c2e2;
+    color: black;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large;
+    }
+}

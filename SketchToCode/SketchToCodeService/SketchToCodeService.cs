@@ -37,6 +37,16 @@ namespace SketchToCodeService
                         ServiceEventSource.Current.ServiceMessage(serviceContext, $"Starting Kestrel on {url}");
 
                         var builder = WebApplication.CreateBuilder();
+                        builder.Services.AddCors(options =>
+                        {
+                            options.AddPolicy("MyAllowedOrigins",
+                            policy =>
+                            {
+                                policy.WithOrigins("http://TRVL1Z0J7D3.finastra.global:8569") // note the port is included 
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod();
+                            }); 
+                        });
 
                         builder.Services.AddSingleton<StatelessServiceContext>(serviceContext);
                         builder.WebHost
