@@ -14,7 +14,7 @@ export class InputElementsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  drag(){
-    
+  drag(element: any){
+
   }
 }
