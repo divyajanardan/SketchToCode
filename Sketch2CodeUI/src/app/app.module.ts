@@ -43,7 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     EditorModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
     MatCheckboxModule,    
     HttpClientModule
   ],
