@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SketchTocodeService } from 'src/app/services/sketch-tocode.service';
+import { CodeProvidersService } from '../code-providers.service';
 
 @Component({
   selector: 'app-project-creation-home',
@@ -9,9 +10,9 @@ import { SketchTocodeService } from 'src/app/services/sketch-tocode.service';
 })
 export class ProjectCreationHomeComponent implements OnInit {
 
-  constructor(private router: Router, private projectService: SketchTocodeService) { }
+  constructor(private router: Router, private projectService: SketchTocodeService, private codeProvidersService: CodeProvidersService) { }
 
-  isShowAngular = true; 
+  isShowAngular = true;
   isWebApi = true;
   angularProjName: string = "";
   apiProjName: string = "";
@@ -21,26 +22,27 @@ export class ProjectCreationHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  OpenAngularSection(){
+  OpenAngularSection() {
     this.createAngular = true;
     this.isShowAngular = !this.isShowAngular;
   }
 
-  OpenWebApiSection(){
+  OpenWebApiSection() {
     this.createWebApi = true;
     this.isWebApi = !this.isWebApi;
   }
 
-  CreateProject(){
+  CreateProject() {
     let args;
-    if(this.createAngular && this.angularProjName != ""){
+    if (this.createAngular && this.angularProjName != "") {
       args = { 'projectName': this.angularProjName, 'projectType': '2' };
       this.projectService.createProject(args);
+      this.codeProvidersService.projName = this.angularProjName;
     }
-    if(this.createWebApi && this.apiProjName != ""){
+    if (this.createWebApi && this.apiProjName != "") {
       args = { 'projectName': this.apiProjName, 'projectType': '1' };
       this.projectService.createProject(args);
-    }   
+    }
     this.router.navigate(['/editor']);
-  } 
+  }
 }
