@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: "http://TRVLCY4MFK3.finastra.global:8569"
+  apiEndPoint: ""
 };
 
 /*
